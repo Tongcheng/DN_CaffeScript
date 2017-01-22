@@ -3,7 +3,7 @@ test_iter: 200
 test_interval: 800
 base_lr: 0.1
 display: 1
-max_iter: 230400
+max_iter: 800
 lr_policy: "multistep"
 gamma: 0.1
 momentum: 0.9
