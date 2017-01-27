@@ -28,7 +28,7 @@ layer {
   }
   data_param {
     source: "/home/tl486/git_TCcaffe/caffe2/caffe/examples/cifar10/cifar10_test_lmdb"
-    batch_size: 64
+    batch_size: 50
     backend: LMDB
   }
 }
