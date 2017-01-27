@@ -111,6 +111,9 @@ layer {
   type: "ReLU"
   bottom: "BatchNorm1"
   top: "BatchNorm1"
+  relu_param {
+    negative_slope: 0.5
+  }
 }
 layer {
   name: "Convolution2"
@@ -202,6 +205,9 @@ layer {
   type: "ReLU"
   bottom: "BatchNorm2"
   top: "BatchNorm2"
+  relu_param {
+    negative_slope: 0.5
+  }
 }
 layer {
   name: "Convolution3"
@@ -293,6 +299,9 @@ layer {
   type: "ReLU"
   bottom: "BatchNorm3"
   top: "BatchNorm3"
+  relu_param {
+    negative_slope: 0.5
+  }
 }
 layer {
   name: "Convolution4"
