@@ -71,7 +71,7 @@ layer {
       type: "constant"
       value: 0
     }
-    use_dropout: true
+    use_dropout: false
     dropout_amount: 0.2
   }
 }
@@ -134,18 +134,9 @@ layer {
   }
 }
 layer {
-  name: "Dropout1"
-  type: "Dropout"
-  bottom: "Convolution2"
-  top: "Dropout1"
-  dropout_param {
-    dropout_ratio: 0.2
-  }
-}
-layer {
   name: "Pooling1"
   type: "Pooling"
-  bottom: "Dropout1"
+  bottom: "Convolution2"
   top: "Pooling1"
   pooling_param {
     pool: AVE
@@ -173,7 +164,7 @@ layer {
       type: "constant"
       value: 0
     }
-    use_dropout: true
+    use_dropout: false
     dropout_amount: 0.2
   }
 }
@@ -236,18 +227,9 @@ layer {
   }
 }
 layer {
-  name: "Dropout2"
-  type: "Dropout"
-  bottom: "Convolution3"
-  top: "Dropout2"
-  dropout_param {
-    dropout_ratio: 0.2
-  }
-}
-layer {
   name: "Pooling2"
   type: "Pooling"
-  bottom: "Dropout2"
+  bottom: "Convolution3"
   top: "Pooling2"
   pooling_param {
     pool: AVE
@@ -275,7 +257,7 @@ layer {
       type: "constant"
       value: 0
     }
-    use_dropout: true
+    use_dropout: false
     dropout_amount: 0.2
   }
 }
