@@ -1,25 +1,23 @@
 # DenseNet Space Efficient Implementation In Caffe
 
-### Caffe fork src: https://github.com/Tongcheng/caffe/tree/DenseBlock_release1 , branch: DenseBlock_release1
+### Caffe fork src: https://github.com/Tongcheng/caffe/
 
-### Features and Differences of release1
+### Features
 
-This is space efficient, while the original version takes O(n^2) to store intermediate data, this implementation take only O(n) space.
+This is an implementation that use O(T) space for data, where T is number of transitions within DenseBlock, for the simple model where totalLayer L = 40 and growthRate k = 12, number of transition in each DenseBlock is 12.
 
-Because this is more space efficient, it happens it have better spatial locality and is faster than original caffe implementation. (About 1.5x faster).
+In comparison, the original implementation will take O(T^2) amount of space for data.
 
-The difference with original version is:
+This version currently runs (without dropout) 6 iters/second, and use space less than 2 GB on GPU for L=40,k=12 model.
 
-1) Original ReLU was changed to ReLU with negative_slope = 0.5, because space efficiency is achieved by reversible operations.
+The way the linear space is implemented is:
 
-2) No dropout.
+(i) setting TensorDescriptor for cudnn explicitly, allowing stride between different image. (That means initially data deployed was not continuous, our process will fill in the blank data in the middle.)
 
-3) Currently version always use Batch Mean/Var for BatchNormalization for both Test and Train phase. This (hopefully) be improved in next release.
-
-4) Currently we have no BC support, will be added in next release.
+(ii) In the backward phase, we first use BN forward and ReLU forward to reconstruct the corresponding data for a transition. Then we apply the normal backward procedure.
 
 ### How to use it:
 
-1) clone the branch
+1) clone the source
 
 2) make -j12, with cudnn option set to 1 in makefile.
