@@ -20,4 +20,9 @@ The way the linear space is implemented is:
 
 1) clone the source
 
-2) make -j12, with cudnn option set to 1 in makefile.
+2) mkdir build
+
+3a) cmake .. (if you are using atlas)
+3b) cmake .. -DBLAS=open (if you are using openblas)
+
+4) make all
