@@ -22,7 +22,6 @@ The way the linear space is implemented is:
 
 2) mkdir build
 
-3a) cmake .. (if you are using atlas)
-3b) cmake .. -DBLAS=open (if you are using openblas)
+3) cmake .. (if you are using atlas) OR cmake .. -DBLAS=open (if you are using openblas)
 
 4) make all
